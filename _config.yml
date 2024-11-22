@@ -1,0 +1,80 @@
+url: "https://netfizz.im" # the base hostname & protocol for your site
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+
+gist:
+  noscript: true
+
+# Site settings
+title: mergefailure
+description: > # this means to ignore newlines until "baseurl:"
+  Mergefailure for kubernetes, elixir, aws and google cloud
+# baseurl: # the subpath of your site, e.g. /blog/
+twitter_username: binarytemple
+github_username: binarytemple
+# medium_username:  mergefailure
+orgname: netfizz
+
+contact:
+  location: "Isle of Man"
+  phone: "on request"
+  email: sales@netfizz.im
+
+# Commenting
+# comments:
+#  provider: disqus
+
+layout: default
+comments: true
+
+## Disqus
+disqus:
+  shortname: netfizz-im
+
+# Pagination
+paginate: 3
+paginate_path: "blog/page:num"
+
+## => Build
+##############################
+#markdown    : kramdown
+#highlighter : rouge
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+permalink: date
+
+exclude:
+  - /.github
+  - /.git*
+  - .*.swp
+  - Dockerfile
+  - /docker
+  - /docs
+  - /node_modules
+  - /screenshots
+  - /svg
+  - /test
+  - /vendor
+  - CHANGELOG.md
+  - Gemfile
+  - Gemfile.lock
+  - HOW_TO_RELEASE.md
+  - LICENSE
+  - Makefile
+  - README-*.md
+  - README.md
+  - gulpfile.js
+  - jekyll-text-theme.gemspec
+  - package-lock.json
+  - package.json
+
+sass:
+  style: compressed
+  sass_dir: _sass

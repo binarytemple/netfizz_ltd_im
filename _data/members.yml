@@ -1,0 +1,9 @@
+- avatar: images/founders/profile-pic-250x250.png
+  name: Bryan Hunt
+  position: Founder
+  socials:
+    - link: http://twitter.com
+      icon: twitter
+    - link: http://facebook.com
+      icon: facebook
+  desc: Bryan Hunt is an industry veteran with 25 years of software development experience.

@@ -1,0 +1,21 @@
+skills:
+  - title: Kubernetes
+    percentage: 84
+  - title: Elixir
+    percentage: 95
+  - title: Linux
+    percentage: 90
+  - title: Erlang
+    percentage: 80
+  - title: Marketing
+    percentage: 20
+  - title: API integration
+    percentage: 80
+  - title: Java
+    percentage: 80
+
+testimonials:
+  - quote: He sped up our reconcilliation process from 12 hours to 30 seconds.
+    author: General manager of gambling firm.s
+  - quote: He taught me everything I know.
+    author: A. N. Intern

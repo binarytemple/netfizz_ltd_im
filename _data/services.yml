@@ -1,0 +1,43 @@
+services_left:
+  - title: "Elixir Development"
+    icon: "code"
+    desc: "Leverage the power of Elixir's scalable and fault-tolerant architecture for your mission-critical applications. Our team specializes in building robust Elixir applications and libraries that deliver exceptional performance under high-concurrency demands."
+
+  - title: "Web Development"
+    icon: "globe"
+    desc: "Transform your digital presence with our comprehensive web development solutions. We combine technical expertise with strategic insight to create responsive, user-focused websites and applications that drive meaningful business  results."
+
+  - title: "Kubernetes Solutions"
+    icon: "cubes"
+    desc: "Optimize your deployment infrastructure with our specialized Kubernetes expertise. We provide custom Docker images, reference applications, and full infrastructure management to ensure scalable, resilient operations."
+
+services_right:
+  - title: "Security Services"
+    icon: "shield"
+    desc: "Protect your digital assets with our comprehensive security solutions. We implement industry best practices and advanced protection protocols to safeguard your systems against evolving threats."
+
+  - title: "GIS Implementation"
+    icon: "map-marker"
+    desc: "Harness the power of location intelligence with our GIS expertise. From OpenStreetMap to Google Maps integration, we deliver mapping solutions that provide valuable spatial insights for your business."
+
+  - title: "Data Architecture"
+    icon: "database"
+    desc: "Build a solid foundation for your data needs with our expertise in distributed database systems. We design and implement scalable data architectures that support informed decision-making across your organization."
+
+  - title: "Multimedia Production"
+    icon: "camera"
+    desc: "Enhance your brand communication with our professional multimedia services: Strategic photography that captures your brand's unique perspective, engaging video tutorials and promotional content that educates and inspires your audience."
+
+all:
+  - icon: trophy
+    title: Web Design
+    desc: As you can see from this beautiful website - we have quite a lot of competence in this area (bought template for $40)
+  - icon: cogs
+    title: Web Development
+    desc: Now, if you mean massive distributed systems, some of whom have a web frontend - then yes - we do web development.
+  - icon: glass-martini
+    title: Branding
+    desc: A new area for us - this website is an experiment in branding.
+  - icon: lock
+    title: Security
+    desc: Security is something we care about, probably more than most of the industry, you can expect us to act in your best interests.
