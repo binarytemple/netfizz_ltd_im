@@ -1,0 +1,70 @@
+url: "https://netfizz.im" # the base hostname & protocol for your site
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+
+gist:
+  noscript: true
+
+# Site settings
+title: netfizz ltd
+description: > # this means to ignore newlines until "baseurl:"
+  netfizz ltd - IM based software consultancy
+baseurl: "" # Remove netfizz.im and leave empty or use "/" if you want a path prefix
+twitter_username: netfizz_co_uk
+github_username: binarytemple
+orgname: netfizz_im
+
+contact:
+  location: "Isle of Man"
+comments:
+  provider: disqus
+disqus:
+  shortname: netfizz_im
+
+# Pagination
+paginate: 3
+paginate_path: "blog/page:num"
+
+## => Build
+##############################
+#markdown    : kramdown
+#highlighter : rouge
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+permalink: date
+
+exclude:
+  - /.github
+  - /.git*
+  - .*.swp
+  - Dockerfile
+  - /docker
+  - /docs
+  - /node_modules
+  - /screenshots
+  - /svg
+  - /test
+  - /vendor
+  - CHANGELOG.md
+  - Gemfile
+  - Gemfile.lock
+  - HOW_TO_RELEASE.md
+  - LICENSE
+  - Makefile
+  - README-*.md
+  - README.md
+  - gulpfile.js
+  - jekyll-text-theme.gemspec
+  - package-lock.json
+  - package.json
+
+sass:
+  style: compressed
+  sass_dir: _sass
