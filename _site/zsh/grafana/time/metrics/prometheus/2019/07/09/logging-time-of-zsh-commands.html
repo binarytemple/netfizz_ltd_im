@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CLI metrics with the zsh shell</title>
+  <meta name="description" content="I’ve got a problem - I spend too many hours of the day in front of a computer. I need to better regulate my time.">
+
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/fontello.css">
+  <link rel="stylesheet" href="/css/fontawesome.all.min.css">
+
+  <script src="/javascripts/libs.js" type="text/javascript"></script> 
+  <script src="/javascripts/mermaid.min.js"></script>
+
+  <script>
+    // terrificjs bootstrap
+    (function($) {
+        $(document).ready(function() {
+            var $page = $('body');
+            var config = {
+              dependencyPath: {
+                plugin: 'javascripts/'
+              }
+            }
+            var application = new Tc.Application($page, config);
+            application.registerModules();
+            application.start();
+        });
+    })(Tc.$);
+  </script>
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,700,300" media="screen" rel="stylesheet" type="text/css" />
+  <link href="//fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+  <script src="/javascripts/masonry.pkgd.js" type="text/javascript"></script>
+  <script src="/javascripts/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+  <script src="/javascripts/slick.min.js" type="text/javascript"></script>
+  <script src="/javascripts/json2.js" type="text/javascript"></script>
+  <script src="https://global.localizecdn.com/localize.js"></script>
+  <script>!function(a){if(!a.Localize){a.Localize={};for(var e=["translate","untranslate","phrase","initialize","translatePage","setLanguage","getLanguage","detectLanguage","getAvailableLanguages","untranslatePage","bootstrap","prefetch","on","off","hideWidget","showWidget","getSourceLanguage"],t=0;t<e.length;t++)a.Localize[e[t]]=function(){}}}(window);</script>
+  <script>
+    Localize.initialize({
+      key: 'f846e4256b56e', 
+      rememberLanguage: true,
+      // other options go here, separated by commas
+    });
+  </script>
+  <link rel="canonical" href="https://mergefailure.com/zsh/grafana/time/metrics/prometheus/2019/07/09/logging-time-of-zsh-commands.html">
+  <link rel="alternate" type="application/rss+xml" title="mergefailure" href="https://mergefailure.com/feed.xml" />
+</head>
+
+
+  <body>
+
+    <div class='contain-to-grid sticky'>
+  <nav class='top-bar' data-options='sticky_on: large' data-topbar=''>
+    <ul class='title-area'>
+      <li class='name'>
+        <h1>
+          <a href='https://mergefailure.com/index.html'>
+            <img alt="" src="https://mergefailure.com/images/header-logo-140x48.png" />
+          </a>
+        </h1>
+      </li>
+      <li class='toggle-topbar menu-icon'>
+        <a href='#'>Menu</a>
+      </li>
+    </ul>
+    <section class='top-bar-section'>
+      <ul class="right">
+        
+          
+
+          
+            <li class="">
+              <a href="https://mergefailure.com/index.html">Home</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="https://mergefailure.com/about.html">About</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="https://mergefailure.com/services.html">Services</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="active">
+              <a href="https://mergefailure.com/portfolio.html">Portfolio</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="https://mergefailure.com/contact.html">Contact</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="https://mergefailure.com/jobs.html">Jobs</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="https://mergefailure.com/blog/">Blog</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="https://mergefailure.com/timeline.html">Timeline</a>
+            </li>
+          
+        
+      </ul>
+    </section>
+  </nav>
+</div>
+
+
+    <div id='main' role='main'>
+      <div class='full parallax' style='background-image: url(https://mergefailure.com/images/@stock/blog-header-bg.jpg); color: #fff;'>
+  <div class='row'>
+    <div class='large-12 columns'>
+      <div class="mod modSectionHeader big">
+  <div class="special-title centered-text">
+    <h2 style="color: #fff;">Our blog</h2>
+  </div>
+  
+    <h3 class='centered-text' style='color: #fff'>Know what we are thinking and doing</h3>
+  
+</div>
+    </div>
+  </div>
+  <div class='four spacing'></div>
+</div>
+
+
+<div class='full' style='background: #f5f5f5'>
+  <div class='row'>
+    <div class='large-9 columns'>
+
+      <div class='row'>
+  <div class='large-12 columns'>
+    <div class='mod modBlogPost big'>
+      <div class='images'>
+        
+          <div class='image'><img alt="" src="https://mergefailure.com/images/@stock/blog-3.jpg" /></div>
+        
+          <div class='image'><img alt="" src="https://mergefailure.com/images/@stock/blog-2.jpg" /></div>
+        
+      </div>
+      <div class='content'>
+        <p class='info'>
+          <span>July 09, 2019</span>
+          /
+          <span>
+            by 
+          </span>
+          /
+          <span>
+            <a href="#">4 comments</a>
+          </span>
+        </p>
+        <h3><a href="/zsh/grafana/time/metrics/prometheus/2019/07/09/logging-time-of-zsh-commands.html">CLI metrics with the zsh shell</a></h3>
+        <ul>
+  <li><a href="#zsh-hooks-and-their-limitations">Zsh hooks and their limitations</a></li>
+  <li><a href="#cron-and-zsh_history-parsing">Cron and ~/.zsh_history parsing</a></li>
+</ul>
+
+        <p>I’ve got a problem - I spend too many hours of the day in front of a computer. I need to better regulate my time.</p>
+
+<p>Lets find a UNIX command line tools way to keep a record of my hours…</p>
+
+<p>There are a couple of things that I’ll presume to be true.</p>
+
+<ol>
+  <li>If I enter a command in the shell, I’ve probably been working for a couple of minutes before that.</li>
+  <li>If I enter a shell command every 5 minutes over an hour I’m probably busy working.</li>
+  <li>I can determine work by the bucketed frequency of events - if one event or ten events occur in a minute - I’ll just take it as a bool - something or something(s) happened in that time.</li>
+  <li>Spoiler alert, this is going to involve prometheus <a href="https://prometheus.io/docs/concepts/metric_types/#gauge">gauge</a> type</li>
+  <li>Most of the time series databases have some sort of HTTP interface, or even a simple enough API you can just splurge data over to them using tools like netcat.</li>
+</ol>
+
+<h2 id="zsh-hooks-and-their-limitations">Zsh hooks and their limitations</h2>
+
+<p>I want to log the time and exit code of every command I execute in the zsh shell to something that grafana can display as a nice graph showing how busy and how clumsy I’m running.</p>
+
+<p>I’d like to do this in order to regulate my computer use so do too many 60 hour weeks and burnout. I think this is a good life hack. I don’t want to install some dodgy app from the app store to do this.</p>
+
+<p>It seems like a simple thing so I’ve started investigating.</p>
+
+<p>I started off with the idea to install a zsh hook and trap the time and exit code of every command I execute in zsh. But this doesn’t seem possible, perhaps by intentional design.</p>
+
+<ol>
+  <li>I have tried <code class="language-plaintext highlighter-rouge">add-zsh-hook zshaddhistory debugger</code></li>
+  <li>I have tried <code class="language-plaintext highlighter-rouge">add-zsh-hook precmd debugger</code></li>
+  <li>I have tried <code class="language-plaintext highlighter-rouge">add-zsh-hook preexec debugger</code></li>
+</ol>
+
+<p>where the definition of debugger is :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    debugger () {
+        echo "result ${?} ${@}"
+    }
+</code></pre></div></div>
+
+<p>But to no avail, sure it’ll log out the command, and exit code - but it only works for successful commands, not failures.</p>
+
+<p>Conclusion : Zsh hooks don’t seem to be useful for CLI metrics.</p>
+
+<h2 id="cron-and-zsh_history-parsing">Cron and ~/.zsh_history parsing</h2>
+
+<p>In any event, I don’t like to have too many moving parts around in my shell (I run a tight shell), so the idea occurred to run a cron job every couple of hours, to read the files and send them somewhere as a http or similar simple upload and process the data that way.</p>
+
+<p>If I send the same request twice (ZSH files can be arbitrarily truncated so I’ll just run it every hour and hope for the best) - how can I avoid registering a duplicate event? Surely theres a service or time series database (Prometheus, Influx) that does deduplication or has a metric of some sort that I could register to, like a gauge which I could then filter down.</p>
+
+<p>There’s a couple of (near) certainties :</p>
+
+<ol>
+  <li>My ~/.zsh_history list the commands I’ve executed.</li>
+  <li>Each history line starts with a timestamp.</li>
+</ol>
+
+<p>There’s 518 commands in my zsh history (fresh account):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat ~/.zsh_history| awk -F";" '/^:/{print $1}' | wc -l
+     518
+</code></pre></div></div>
+
+<p>393 of them are exact duplicates (time and command):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat ~/.zsh_history| awk -F";" '/^:/{print $1}' | sort -u |wc -l
+     393
+</code></pre></div></div>
+
+<p>The preamble  looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat ~/.zsh_history| awk -F";" '/^:/{print $1}' | head -n1
+: 1565390801:0
+</code></pre></div></div>
+
+<p>Which can be parsed into a cleaner unix timestamp like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% cat ~/.zsh_history| sed -n \
+   '/^:/{
+   s/^:[^0-9]*\([0-9]*\).*/\1/;p;
+        }' | head -n1
+1565390801
+</code></pre></div></div>
+
+<p>For completeness, this is the head of that file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% cat ~/.zsh_history| head -n1
+: 1565390801:0;kubectl get endpoints
+</code></pre></div></div>
+
+<p>The number of timestamps shrink dramatically without the entropy of the commands. Lets try it again to compare.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat ~/.zsh_history| sed -n \
+   '/^:/{
+   s/^:[^0-9]*\([0-9]*\).*/\1/;p;
+        }' | sort -u | wc -l
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">275</code> not bad !</p>
+
+<p>I’m making a presumption here that repeated commands aren’t productive, which is a reasonable thing to consider as repeated commands are usually a sign of frustration or attempting to debug something.</p>
+
+<p>But now I’m stuck, what’s the simplest way to get them onto a pretty graph?</p>
+
+<p>Ideally I’d like to run a curl command which reads the list of event times on stdin and just sends them somewhere (like a free service).</p>
+
+<p>Let’s explore further in part 2 of this post…</p>
+
+      </div>
+    </div>
+    <div class='two spacing'></div>
+    <a id='comments'></a>
+    <div class='comments-wrapper'>
+      <!-- start disqus--> 
+      
+        
+
+      
+      <!-- end disqus --> 
+      </div>
+    <div class='four spacing'></div>
+  </div>
+</div>
+
+
+      
+
+
+      <div class='four spacing'></div>
+    </div>
+    <div class='large-3 columns' id='sidebar'>
+      <div class='links'>
+  <h3>Archives</h3>
+  <ul>
+    <li>
+      <a href='#'>December 2011</a>
+      <span>(2)</span>
+    </li>
+    <li>
+      <a href='#'>November 2011</a>
+      <span>(4)</span>
+    </li>
+    <li>
+      <a href='#'>October 2011</a>
+      <span>(1)</span>
+    </li>
+    <li>
+      <a href='#'>September 2011</a>
+      <span>(3)</span>
+    </li>
+    <li>
+      <a href='#'>July 2011</a>
+      <span>(5)</span>
+    </li>
+    <li>
+      <a href='#'>June 2011</a>
+      <span>(3)</span>
+    </li>
+    <li>
+      <a href='#'>May 2011</a>
+      <span>(6)</span>
+    </li>
+    <li>
+      <a href='#'>April 2011</a>
+      <span>(1)</span>
+    </li>
+  </ul>
+</div>
+<div class='links'>
+  <h3>Categories</h3>
+  <ul>
+    <li>
+      <a href='#'>Web Design</a>
+    </li>
+    <li>
+      <a href='#'>Web Development</a>
+    </li>
+    <li>
+      <a href='#'>Illustrations</a>
+    </li>
+    <li>
+      <a href='#'>Photography</a>
+    </li>
+    <li>
+      <a href='#'>Logo Design</a>
+    </li>
+    <li>
+      <a href='#'>Tricks &amp; Tips</a>
+    </li>
+  </ul>
+</div>
+<div class='links'>
+  <h3>Recent Posts</h3>
+  <ul>
+    <li>
+      <a href='#'>Great quality means a lot to us</a>
+    </li>
+    <li>
+      <a href='#'>Why you should learn CSS 3</a>
+    </li>
+    <li>
+      <a href='#'>5 steps to a more successful WordPress theme</a>
+    </li>
+    <li>
+      <a href='#'>HTML 5 in real world</a>
+    </li>
+    <li>
+      <a href='#'>Javascript debugging</a>
+    </li>
+  </ul>
+</div>
+<!-- <div class='links'>
+  <h3>Tags</h3>
+  <ul>
+    <li>
+      <a href='#'>Logo</a>
+    </li>
+    <li>
+      <a href='#'>Development</a>
+    </li>
+    <li>
+      <a href='#'>Design</a>
+    </li>
+    <li>
+      <a href='#'>Photography</a>
+    </li>
+    <li>
+      <a href='#'>News</a>
+    </li>
+    <li>
+      <a href='#'>Javascript</a>
+    </li>
+  </ul>
+</div> -->
+      <div class='four spacing'></div>
+    </div>
+  </div>
+</div>
+    </div>
+
+    <div id='footer'>
+  <div class='three spacing'></div>
+  <div class='row'>
+    <div class='large-3 medium-3 columns'>
+      <h1>
+        <a href='index.html'>
+          <img alt="" src="https://mergefailure.com/images/logo-grey.png" />
+        </a>
+      </h1>
+      <p>©2019 mergefailure All rights reserved.</p>
+      <div class='spacing'></div>
+      <div class='spacing'></div>
+    </div>
+    <div class='large-3 medium-3 columns'>
+      <div class='spacing'></div>
+      <div class='links'>
+        <h4>Some pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">View some works here</a></li>
+          <li><a href="blog.html">Follow our blog</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="services.html">Our services</a></li>
+        </ul>
+      </div>
+      <div class='spacing'></div>
+    </div>
+    <div class='large-3 medium-3 columns'>
+      <div class='spacing'></div>
+      <div class='links'>
+        <h4>Recent posts</h4>
+        <ul>
+          
+            <li><a href="/elixir/rsa/security/2020/11/05/secure-rsa-key-generation-in-elixir.html">Secure RSA key generation in Elixir</a></li>
+          
+            <li><a href="/erlang%20conferences/2019/10/24/code-beam-sf.html">Code Beam San Francisco countdown</a></li>
+          
+            <li><a href="/prometheus/kubernetes/elxir/2019/07/09/prometheus-and-kubernetes.html">Exposing Elixir application metrics using Prometheus</a></li>
+          
+            <li><a href="/zsh/grafana/time/metrics/prometheus/2019/07/09/logging-time-of-zsh-commands.html">CLI metrics with the zsh shell</a></li>
+          
+            <li><a href="/jekyll/update/2019/07/09/owc-aura-prox.html">OWC Aura Pro X aftermarket SSD on Macbook</a></li>
+          
+        </ul>
+      </div>
+      <div class='spacing'></div>
+    </div>
+    <div class='large-3 medium-3 columns'>
+      <div class='spacing'></div>
+      <h4>Contact us</h4>
+      <ul>
+        <li>Phone: 0000..</li>
+        <li>Emial: sales@mergefailure.com</li>
+        <li>Location: British Columbia, CA</li>
+      </ul>
+      <div class='spacing'></div>
+         <ul class='socials'>
+        <li>
+          <a href='https://github.com/mergefailure'>
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+        <li>
+          <a href='http://twitter.com/mergefailure'>
+            <i class='fab fa-twitter'></i>
+          </a>
+        </li>
+        <li>
+          <a href='https://medium.com/@mergefailure'>
+            <i class='fab fa-medium-m'></i>
+          </a>
+        </li>
+        <li>
+          <a href='https://www.youtube.com/channel/UCpz6_aKbLsSjd-V03QPyl0A'>
+            <i class="fab fa-youtube-square"></i>
+          </a>
+        </li>
+      </ul>
+
+
+         <div class='spacing'></div>
+    </div>
+  </div>
+  <div class='two spacing'></div>
+</div>
+<script src="/javascripts/jquery.countTo.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.appear.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.validate.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.sequence-min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.easing.1.3.js" type="text/javascript"></script>
+<script src="/javascripts/app.js" type="text/javascript"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="//www.googletagmanager.com/gtag/js?id=UA-145122920-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-145122920-1');
+</script>
+
+
+<!-- Adsense --> 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7527698851758576",
+    enable_page_level_ads: true
+  });
+</script>
+
+
+<script>
+  window.intercomSettings = {
+    app_id: "ggfjzon6"
+  };
+</script>
+
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ggfjzon6';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+
+
+
+  </body>
+
+</html>

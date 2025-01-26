@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mergefailure</title>
+    <description>Mergefailure for kubernetes, elixir, aws and google cloud 
+</description>
+    <link>https://mergefailure.com/</link>
+    <atom:link href="https://mergefailure.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 05 Sep 2024 15:47:05 +0100</pubDate>
+    <lastBuildDate>Thu, 05 Sep 2024 15:47:05 +0100</lastBuildDate>
+    <generator>Jekyll v4.3.3</generator>
+    
+      <item>
+        <title>Secure RSA key generation in Elixir</title>
+        <description>&lt;div class=&quot;language-elixir highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RsaGeneratorTest&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ExUnit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Case&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;defp&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;do_generate&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# http://erlang.org/doc/apps/public_key/public_key_records.html#rsa&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:RSAPrivateKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;modulus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publicExponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_privateExponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_prime1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_prime2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;_exponent1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_exponent2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_coefficient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;_otherPrimeInfos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rsa_private_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:public_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;generate_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:rsa&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2048&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;65537&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;rsa_public_key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:RSAPublicKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;modulus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publicExponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;rsa_private_key_pem_entry&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:public_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pem_entry_encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:RSAPrivateKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rsa_private_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;rsa_public_key_pem_entry&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:public_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pem_entry_encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:RSAPublicKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rsa_public_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;pem_out_public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:public_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pem_encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rsa_public_key_pem_entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pem_out_private&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:public_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pem_encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rsa_private_key_pem_entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pem_out_private&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pem_out_public&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-elixir highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+  &lt;span class=&quot;nv&quot;&gt;@doc&lt;/span&gt; &lt;span class=&quot;sd&quot;&gt;&quot;&quot;&quot;
+  This works (generating pem files using openssl)
+  &quot;&quot;&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;openssl generate/verify RSA key pair&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;openssl&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;~w(genrsa -out /tmp/openssl.private.pem 2048)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;stderr_to_stdout:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;openssl&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;~w(rsa -in /tmp/openssl.private.pem -check)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;stderr_to_stdout:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;writing RSA key&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;RSA key ok&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-elixir highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;@doc&lt;/span&gt; &lt;span class=&quot;sd&quot;&gt;&quot;&quot;&quot;
+    This fails (generating pem files using erlang :public_key module)
+  &quot;&quot;&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;erl generate/verify RSA key pair&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# http://erlang.org/doc/apps/public_key/public_key_records.html#rsa&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pem_out_private&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;pem_out_public&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;do_generate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/tmp/private.pem&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/tmp/public.pem&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/tmp/private.pem&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pem_out_private&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/tmp/public.pem&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pem_out_public&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;openssl&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;~w(rsa -in /tmp/private.pem -check)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;stderr_to_stdout:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;writing RSA key&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;RSA key ok&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Thu, 05 Nov 2020 10:37:00 +0000</pubDate>
+        <link>https://mergefailure.com/elixir/rsa/security/2020/11/05/secure-rsa-key-generation-in-elixir.html</link>
+        <guid isPermaLink="true">https://mergefailure.com/elixir/rsa/security/2020/11/05/secure-rsa-key-generation-in-elixir.html</guid>
+        
+        
+        <category>elixir</category>
+        
+        <category>rsa</category>
+        
+        <category>security</category>
+        
+      </item>
+    
+      <item>
+        <title>Code Beam San Francisco countdown</title>
+        <description>&lt;p&gt;The conference is happening on Thu, 5 Mar 2020 – Fri, 6 Mar 2020.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Countdown to code beam SF&lt;/em&gt; :&lt;/p&gt;
+
+&lt;div id=&quot;countdown&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+// Set the date we&apos;re counting down to
+var countDownDate = new Date(&quot;March 5, 2020 02:00:00&quot;).getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+// Get today&apos;s date and time
+var now = new Date().getTime();
+
+// Find the distance between now and the count down date
+var distance = countDownDate - now;
+
+// Time calculations for days, hours, minutes and seconds
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+// Display the result in the element with id=&quot;demo&quot;
+document.getElementById(&quot;countdown&quot;).innerHTML = days + &quot; d &quot; + hours + &quot; h &quot; + minutes + &quot; m &quot; + seconds + &quot; s &quot;;
+
+// If the count down is finished, write some text
+if (distance &lt; 0) {
+clearInterval(x);
+document.getElementById(&quot;countdown&quot;).innerHTML = &quot;EXPIRED&quot;;
+}
+}, 1000);
+&lt;/script&gt;
+
+</description>
+        <pubDate>Thu, 24 Oct 2019 18:00:00 +0100</pubDate>
+        <link>https://mergefailure.com/erlang%20conferences/2019/10/24/code-beam-sf.html</link>
+        <guid isPermaLink="true">https://mergefailure.com/erlang%20conferences/2019/10/24/code-beam-sf.html</guid>
+        
+        
+        <category>erlang conferences</category>
+        
+      </item>
+    
+      <item>
+        <title>Exposing Elixir application metrics using Prometheus</title>
+        <description>&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;Exposing Elixir application metrics using Prometheus is pretty simple really - you use a dependency which exposes a HTTP(S) endpoint or write your own.&lt;/p&gt;
+
+&lt;p&gt;Prometheus discovers which nodes are exposing this endpoint by means of kubernetes pod annotations (Prometheus itself is typically installed using helm or you can do it manually).&lt;/p&gt;
+
+&lt;p&gt;Prometheus polls a HTTP(S) endpoint - it is not idiomatic to push metrics to Prometheus.&lt;/p&gt;
+
+&lt;p&gt;Here’s a reasonable architectural overview - &lt;a href=&quot;https://medium.com/faun/production-grade-kubernetes-monitoring-using-prometheus-78144b835b60&quot;&gt;Production grade Kubernetes Monitoring using Prometheus&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;config-in-a-demo-project&quot;&gt;Config in a demo project&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://github.com/binarytemple/is_it_up/blob/master/lib/is_it_up/metrics/instrumenter.ex&quot;&gt;Instrumenter&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-elixir highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IsItUp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Metrics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Instrumenter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Prometheus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Metric&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;alias&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Prometheus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Metric&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Histogram&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Gauge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;kn&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Logger&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://github.com/binarytemple/is_it_up/blob/master/lib/is_it_up/metrics/exporter.ex&quot;&gt;Exporter&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-elixir highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IsItUp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Metrics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;PlugExporter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Prometheus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;PlugExporter&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Initialization at &lt;a href=&quot;https://github.com/binarytemple/is_it_up/blob/b29820b09fb4d3fda83ec4cd936bbf554f108372/lib/is_it_up/app.ex#L9-L12&quot;&gt;Application&lt;/a&gt; startup :&lt;/p&gt;
+
+&lt;div class=&quot;language-elixir highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Prometheus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Registry&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Prometheus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Registry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;register_collector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:prometheus_process_collector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;IsItUp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Metrics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;PlugExporter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Adding to the plug &lt;a href=&quot;https://github.com/binarytemple/is_it_up/blob/b29820b09fb4d3fda83ec4cd936bbf554f108372/lib/is_it_up/plug/pipeline.ex#L8&quot;&gt;Pipeline&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-elixir highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;IsItUp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Metrics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;PlugExporter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;%{})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The path, ‘/metrics’ is &lt;a href=&quot;https://github.com/binarytemple/is_it_up/blob/b29820b09fb4d3fda83ec4cd936bbf554f108372/lib/is_it_up/plug/root.ex#L17&quot;&gt;created&lt;/a&gt; by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prometheus_plugs&lt;/code&gt; dependency :&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/metrics - check the status of google.co.uk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And the application &lt;a href=&quot;https://github.com/binarytemple/is_it_up/blob/b29820b09fb4d3fda83ec4cd936bbf554f108372/mix.exs#L47-L50&quot;&gt;dependencies&lt;/a&gt; to make all this happen ?&lt;/p&gt;
+
+&lt;div class=&quot;language-elixir highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:plug_cowboy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 2.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:prometheus_ex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 3.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:prometheus_plugs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 1.1.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:prometheus_process_collector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;~&amp;gt; 1.4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;uml-diagrams&quot;&gt;UML diagrams&lt;/h2&gt;
+
+&lt;p&gt;Setup sequence&lt;/p&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+    sequenceDiagram
+    Instrumenter --&amp;gt;&amp;gt; Prometheus : declares custom metrics
+    SomeModule   --&amp;gt;&amp;gt; Instrumenter : Instrumenter.http_check(host)
+    Instrumenter --&amp;gt;&amp;gt; Prometheus : Gauge.set(number)
+&lt;/div&gt;
+
+&lt;p&gt;Deployment diagram&lt;/p&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+    graph LR
+    Module -- generates metrics --&amp;gt; PrometheusEndpoint
+    Prometheus -- scrapes --&amp;gt; PrometheusEndpoint(Round Rect)
+    Grafana -- queries --&amp;gt; Prometheus
+    User -- views --&amp;gt; Grafana
+&lt;/div&gt;
+</description>
+        <pubDate>Tue, 09 Jul 2019 09:19:12 +0100</pubDate>
+        <link>https://mergefailure.com/prometheus/kubernetes/elxir/2019/07/09/prometheus-and-kubernetes.html</link>
+        <guid isPermaLink="true">https://mergefailure.com/prometheus/kubernetes/elxir/2019/07/09/prometheus-and-kubernetes.html</guid>
+        
+        
+        <category>prometheus</category>
+        
+        <category>kubernetes</category>
+        
+        <category>elxir</category>
+        
+      </item>
+    
+      <item>
+        <title>CLI metrics with the zsh shell</title>
+        <description>&lt;p&gt;I’ve got a problem - I spend too many hours of the day in front of a computer. I need to better regulate my time.&lt;/p&gt;
+
+&lt;p&gt;Lets find a UNIX command line tools way to keep a record of my hours…&lt;/p&gt;
+
+&lt;p&gt;There are a couple of things that I’ll presume to be true.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;If I enter a command in the shell, I’ve probably been working for a couple of minutes before that.&lt;/li&gt;
+  &lt;li&gt;If I enter a shell command every 5 minutes over an hour I’m probably busy working.&lt;/li&gt;
+  &lt;li&gt;I can determine work by the bucketed frequency of events - if one event or ten events occur in a minute - I’ll just take it as a bool - something or something(s) happened in that time.&lt;/li&gt;
+  &lt;li&gt;Spoiler alert, this is going to involve prometheus &lt;a href=&quot;https://prometheus.io/docs/concepts/metric_types/#gauge&quot;&gt;gauge&lt;/a&gt; type&lt;/li&gt;
+  &lt;li&gt;Most of the time series databases have some sort of HTTP interface, or even a simple enough API you can just splurge data over to them using tools like netcat.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;zsh-hooks-and-their-limitations&quot;&gt;Zsh hooks and their limitations&lt;/h2&gt;
+
+&lt;p&gt;I want to log the time and exit code of every command I execute in the zsh shell to something that grafana can display as a nice graph showing how busy and how clumsy I’m running.&lt;/p&gt;
+
+&lt;p&gt;I’d like to do this in order to regulate my computer use so do too many 60 hour weeks and burnout. I think this is a good life hack. I don’t want to install some dodgy app from the app store to do this.&lt;/p&gt;
+
+&lt;p&gt;It seems like a simple thing so I’ve started investigating.&lt;/p&gt;
+
+&lt;p&gt;I started off with the idea to install a zsh hook and trap the time and exit code of every command I execute in zsh. But this doesn’t seem possible, perhaps by intentional design.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;I have tried &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add-zsh-hook zshaddhistory debugger&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;I have tried &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add-zsh-hook precmd debugger&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;I have tried &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add-zsh-hook preexec debugger&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;where the definition of debugger is :&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    debugger () {
+        echo &quot;result ${?} ${@}&quot;
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But to no avail, sure it’ll log out the command, and exit code - but it only works for successful commands, not failures.&lt;/p&gt;
+
+&lt;p&gt;Conclusion : Zsh hooks don’t seem to be useful for CLI metrics.&lt;/p&gt;
+
+&lt;h2 id=&quot;cron-and-zsh_history-parsing&quot;&gt;Cron and ~/.zsh_history parsing&lt;/h2&gt;
+
+&lt;p&gt;In any event, I don’t like to have too many moving parts around in my shell (I run a tight shell), so the idea occurred to run a cron job every couple of hours, to read the files and send them somewhere as a http or similar simple upload and process the data that way.&lt;/p&gt;
+
+&lt;p&gt;If I send the same request twice (ZSH files can be arbitrarily truncated so I’ll just run it every hour and hope for the best) - how can I avoid registering a duplicate event? Surely theres a service or time series database (Prometheus, Influx) that does deduplication or has a metric of some sort that I could register to, like a gauge which I could then filter down.&lt;/p&gt;
+
+&lt;p&gt;There’s a couple of (near) certainties :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;My ~/.zsh_history list the commands I’ve executed.&lt;/li&gt;
+  &lt;li&gt;Each history line starts with a timestamp.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There’s 518 commands in my zsh history (fresh account):&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat ~/.zsh_history| awk -F&quot;;&quot; &apos;/^:/{print $1}&apos; | wc -l
+     518
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;393 of them are exact duplicates (time and command):&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat ~/.zsh_history| awk -F&quot;;&quot; &apos;/^:/{print $1}&apos; | sort -u |wc -l
+     393
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The preamble  looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat ~/.zsh_history| awk -F&quot;;&quot; &apos;/^:/{print $1}&apos; | head -n1
+: 1565390801:0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which can be parsed into a cleaner unix timestamp like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% cat ~/.zsh_history| sed -n \
+   &apos;/^:/{
+   s/^:[^0-9]*\([0-9]*\).*/\1/;p;
+        }&apos; | head -n1
+1565390801
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For completeness, this is the head of that file:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;% cat ~/.zsh_history| head -n1
+: 1565390801:0;kubectl get endpoints
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The number of timestamps shrink dramatically without the entropy of the commands. Lets try it again to compare.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat ~/.zsh_history| sed -n \
+   &apos;/^:/{
+   s/^:[^0-9]*\([0-9]*\).*/\1/;p;
+        }&apos; | sort -u | wc -l
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;275&lt;/code&gt; not bad !&lt;/p&gt;
+
+&lt;p&gt;I’m making a presumption here that repeated commands aren’t productive, which is a reasonable thing to consider as repeated commands are usually a sign of frustration or attempting to debug something.&lt;/p&gt;
+
+&lt;p&gt;But now I’m stuck, what’s the simplest way to get them onto a pretty graph?&lt;/p&gt;
+
+&lt;p&gt;Ideally I’d like to run a curl command which reads the list of event times on stdin and just sends them somewhere (like a free service).&lt;/p&gt;
+
+&lt;p&gt;Let’s explore further in part 2 of this post…&lt;/p&gt;
+</description>
+        <pubDate>Tue, 09 Jul 2019 09:19:12 +0100</pubDate>
+        <link>https://mergefailure.com/zsh/grafana/time/metrics/prometheus/2019/07/09/logging-time-of-zsh-commands.html</link>
+        <guid isPermaLink="true">https://mergefailure.com/zsh/grafana/time/metrics/prometheus/2019/07/09/logging-time-of-zsh-commands.html</guid>
+        
+        
+        <category>zsh</category>
+        
+        <category>grafana</category>
+        
+        <category>time</category>
+        
+        <category>metrics</category>
+        
+        <category>prometheus</category>
+        
+      </item>
+    
+      <item>
+        <title>OWC Aura Pro X aftermarket SSD on Macbook</title>
+        <description>&lt;p&gt;I got an OWC Aura Pro X in order to upgrade my Macbook drive from it’s somewhat measly 256GB drive to 1TB as I needed to build a lot of Docker images.&lt;/p&gt;
+
+&lt;p&gt;On the initial install, the system was running for 12 hours trying to install OSX and was so sluggish I could barely move the mouse pointer accross the screen.&lt;/p&gt;
+
+&lt;p&gt;I rebooted the machine, suddenly the system started behaving normally. I mean, the whole process started from the beginning again but this time it completed in about 20 minutes.&lt;/p&gt;
+
+&lt;p&gt;“Hmmm”, I thought, “that doesn’t bode well”.&lt;/p&gt;
+
+&lt;p&gt;Mostly the OWC device functions normally, but sometimes it just seems to get overwhelmed, particularly if I don’t reboot the system every day or two.&lt;/p&gt;
+
+&lt;p&gt;The crash reports after the system restarts always look like this (note the reference to ‘IONVMeController.cpp’ :&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    Fri Aug  9 16:44:09 2019
+
+    *** Panic Report ***
+    panic(cpu 4 caller 0xffffff7f8e892b30): nvme: &quot;Fatal error occurred. CSTS=0xffffffff US[1]=0x0 US[0]=0x5 VID/DID=0x2260126f
+    . FW Revision=C2.3.21\n&quot;@/BuildRoot/Library/Caches/com.apple.xbs/Sources/IONVMeFamily/IONVMeFamily-387.270.1/IONVMeController.cpp:5334
+    Backtrace (CPU 4), Frame : Return Address
+    0xffffff922049bae0 : 0xffffff800b5ad6ed 
+    0xffffff922049bb30 : 0xffffff800b6e9185 
+    0xffffff922049bb70 : 0xffffff800b6da8ba 
+    0xffffff922049bbe0 : 0xffffff800b55ab40 
+    0xffffff922049bc00 : 0xffffff800b5ad107 
+    0xffffff922049bd20 : 0xffffff800b5acf53 
+    0xffffff922049bd90 : 0xffffff7f8e892b30 
+    0xffffff922049bef0 : 0xffffff7f8e892db7 
+    0xffffff922049bf30 : 0xffffff800bcbbe7e 
+    0xffffff922049bf70 : 0xffffff800bcbbbf8 
+    0xffffff922049bfa0 : 0xffffff800b55a0ce 
+          Kernel Extensions in backtrace:
+             com.apple.iokit.IONVMeFamily(2.1)[A67B3600-6FE3-3037-AC41-8C2D353B6250]@0xffffff7f8e885000-&amp;gt;0xffffff7f8e8c4fff
+                dependency: com.apple.driver.AppleMobileFileIntegrity(1.0.5)[888F591F-8A21-30F9-812F-D366292AA679]@0xffffff7f8c514000
+                dependency: com.apple.iokit.IOPCIFamily(2.9)[202F4F5C-5E3C-35A9-A7AD-F85B0E3CD199]@0xffffff7f8be95000
+                dependency: com.apple.driver.AppleEFINVRAM(2.1)[B83F29B8-24AC-303B-BBBA-CF332168FDE6]@0xffffff7f8c6ea000
+                dependency: com.apple.iokit.IOStorageFamily(2.1)[71BB22B0-3075-35A1-B04E-FBAC574DA80D]@0xffffff7f8c30a000
+                dependency: com.apple.iokit.IOReportFamily(47)[0BC9F93B-456A-3D97-BE4C-69DCBB5E8A3C]@0xffffff7f8c839000
+
+    BSD process name corresponding to current thread: kernel_task
+
+    Mac OS version:
+    18G87
+
+    Kernel version:
+    Darwin Kernel Version 18.7.0: Thu Jun 20 18:42:21 PDT 2019; root:xnu-4903.270.47~4/RELEASE_X86_64
+    Kernel UUID: 982F17B3-0252-37FB-9869-88B3B1C77335
+    Kernel slide:     0x000000000b200000
+    Kernel text base: 0xffffff800b400000
+    __HIB  text base: 0xffffff800b300000
+    System model name: MacBookPro11,4 (Mac-06F11FD93F0323C5)
+
+    System uptime in nanoseconds: 24684961336541
+    last loaded kext at 16782820829592: com.apple.driver.AppleXsanScheme  3 (addr 0xffffff7f8ee3b000, size 32768)
+    last unloaded kext at 16983281709817: com.apple.driver.AppleXsanScheme  3 (addr 0xffffff7f8ee3b000, size 32768)
+    loaded kexts:
+    com.google.drivefs.filesystems.dfsfuse  32.0.11
+    org.virtualbox.kext.VBoxNetAdp  5.2.22
+    org.virtualbox.kext.VBoxNetFlt  5.2.22
+    org.virtualbox.kext.VBoxUSB 5.2.22
+    org.virtualbox.kext.VBoxDrv 5.2.22
+    at.obdev.nke.LittleSnitch 5422
+    com.apple.driver.AudioAUUC  1.70
+    com.apple.fileutil  20.036.15
+    com.apple.filesystems.autofs  3.0
+    com.apple.driver.AppleUpstreamUserClient  3.6.5
+    com.apple.driver.AppleHDA 282.54
+    com.apple.driver.ApplePlatformEnabler 2.7.0d0
+    com.apple.driver.AGPM 110.25.11
+    com.apple.driver.X86PlatformShim  1.0.0
+    com.apple.driver.AppleGraphicsDevicePolicy  3.50.12
+    com.apple.AGDCPluginDisplayMetrics  3.50.12
+    com.apple.driver.AppleHV  1
+    com.apple.iokit.IOUserEthernet  1.0.1
+    com.apple.iokit.IOBluetoothSerialManager  6.0.14d3
+    com.apple.driver.pmtelemetry  1
+    com.apple.Dont_Steal_Mac_OS_X 7.0.0
+    com.apple.driver.AppleBacklight 170.12.12
+    com.apple.driver.AppleIntelHD5000Graphics 12.1.0
+    com.apple.driver.eficheck 1
+    com.apple.driver.AppleMCCSControl 1.5.9
+    com.apple.driver.AppleIntelSlowAdaptiveClocking 4.0.0
+    com.apple.iokit.BroadcomBluetooth20703USBTransport  6.0.14d3
+    com.apple.driver.AppleLPC 3.1
+    com.apple.driver.AppleOSXWatchdog 1
+    com.apple.driver.AppleCameraInterface 6.8.0
+    com.apple.driver.AppleIntelFramebufferAzul  12.1.0
+    com.apple.driver.AppleSMCLMU  212
+    com.apple.driver.AppleThunderboltIP 3.1.2
+    com.apple.driver.AppleTopCaseHIDEventDriver 138.4
+    com.apple.driver.AppleUSBTopCaseDriver  138.4
+    com.apple.driver.AppleUSBCardReader 456.260.3
+    com.apple.filesystems.apfs  945.275.7
+    com.apple.driver.AirPort.BrcmNIC  1400.1.1
+    com.apple.driver.AppleVirtIO  2.1.3
+    com.apple.filesystems.hfs.kext  407.200.4
+    com.apple.AppleFSCompression.AppleFSCompressionTypeDataless 1.0.0d1
+    com.apple.BootCache 40
+    com.apple.AppleFSCompression.AppleFSCompressionTypeZlib 1.0.0
+    com.apple.AppleSystemPolicy 1.0
+    com.apple.private.KextAudit 1.0
+    com.apple.driver.AppleSmartBatteryManager 161.0.0
+    com.apple.driver.AppleHPET  1.8
+    com.apple.driver.AppleACPIButtons 6.1
+    com.apple.driver.AppleRTC 2.0
+    com.apple.driver.AppleSMBIOS  2.1
+    com.apple.driver.AppleACPIEC  6.1
+    com.apple.driver.AppleAPIC  1.7
+    com.apple.nke.applicationfirewall 201
+    com.apple.security.TMSafetyNet  8
+    com.apple.iokit.IOUSBUserClient 900.4.2
+    com.apple.kext.triggers 1.0
+    com.apple.driver.DspFuncLib 282.54
+    com.apple.kext.OSvKernDSPLib  528
+    com.apple.iokit.IOAVBFamily 760.6
+    com.apple.plugin.IOgPTPPlugin 740.2
+    com.apple.iokit.IOEthernetAVBController 1.1.0
+    com.apple.iokit.IOSkywalkFamily 1
+    com.apple.driver.AppleSSE 1.0
+    com.apple.driver.AppleBacklightExpert 1.1.0
+    com.apple.AppleGPUWrangler  3.50.12
+    com.apple.iokit.IONDRVSupport 530.51
+    com.apple.driver.X86PlatformPlugin  1.0.0
+    com.apple.driver.AppleSMBusController 1.0.18d1
+    com.apple.iokit.IOSlowAdaptiveClockingFamily  1.0.0
+    com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport 6.0.14d3
+    com.apple.iokit.IOBluetoothHostControllerUSBTransport 6.0.14d3
+    com.apple.iokit.IOBluetoothHostControllerTransport  6.0.14d3
+    com.apple.driver.AppleGraphicsControl 3.50.12
+    com.apple.driver.IOPlatformPluginFamily 6.0.0d8
+    com.apple.AppleGraphicsDeviceControl  3.50.12
+    com.apple.iokit.IOAcceleratorFamily2  404.14
+    com.apple.iokit.IOSurface 255.6.1
+    com.apple.driver.AppleHDAController 282.54
+    com.apple.iokit.IOGraphicsFamily  530.66
+    com.apple.iokit.IOHDAFamily 282.54
+    com.apple.driver.AppleActuatorDriver  2450.1
+    com.apple.driver.AppleHSBluetoothDriver 138.4
+    com.apple.driver.IOBluetoothHIDDriver 6.0.14d3
+    com.apple.iokit.IOBluetoothFamily 6.0.14d3
+    com.apple.driver.AppleHIDKeyboard 208
+    com.apple.driver.AppleMultitouchDriver  2450.1
+    com.apple.driver.AppleInputDeviceSupport  2440.2
+    com.apple.driver.usb.IOUSBHostHIDDevice 1.2
+    com.apple.iokit.IOAudioFamily 206.5
+    com.apple.vecLib.kext 1.2.0
+    com.apple.driver.usb.networking 5.0.0
+    com.apple.driver.usb.AppleUSBHostCompositeDevice  1.2
+    com.apple.driver.AppleThunderboltDPInAdapter  5.6.9
+    com.apple.driver.AppleThunderboltDPAdapterFamily  5.6.9
+    com.apple.driver.AppleThunderboltPCIDownAdapter 2.1.5
+    com.apple.driver.AppleThunderboltNHI  4.7.9
+    com.apple.iokit.IOThunderboltFamily 6.8.6
+    com.apple.iokit.IO80211Family 1200.12.2
+    com.apple.driver.mDNSOffloadUserClient  1.0.1b8
+    com.apple.driver.corecapture  1.0.4
+    com.apple.iokit.IONVMeFamily  2.1.0
+    com.apple.driver.usb.AppleUSBXHCIPCI  1.2
+    com.apple.driver.usb.AppleUSBXHCI 1.2
+    com.apple.iokit.IOSerialFamily  11
+    com.apple.filesystems.hfs.encodings.kext  1
+    com.apple.driver.usb.AppleUSBHostPacketFilter 1.0
+    com.apple.iokit.IOUSBFamily 900.4.2
+    com.apple.driver.AppleUSBHostMergeProperties  1.2
+    com.apple.driver.AppleEFINVRAM  2.1
+    com.apple.driver.AppleEFIRuntime  2.1
+    com.apple.iokit.IOSMBusFamily 1.1
+    com.apple.iokit.IOHIDFamily 2.0.0
+    com.apple.security.quarantine 3
+    com.apple.security.sandbox  300.0
+    com.apple.kext.AppleMatch 1.0.0d1
+    com.apple.driver.DiskImages 493.0.0
+    com.apple.driver.AppleFDEKeyStore 28.30
+    com.apple.driver.AppleEffaceableStorage 1.0
+    com.apple.driver.AppleKeyStore  2
+    com.apple.driver.AppleUSBTDM  456.260.3
+    com.apple.driver.AppleMobileFileIntegrity 1.0.5
+    com.apple.iokit.IOUSBMassStorageDriver  145.200.2
+    com.apple.iokit.IOSCSIBlockCommandsDevice 408.250.3
+    com.apple.iokit.IOSCSIArchitectureModelFamily 408.250.3
+    com.apple.iokit.IOStorageFamily 2.1
+    com.apple.kext.CoreTrust  1
+    com.apple.driver.AppleCredentialManager 1.0
+    com.apple.driver.KernelRelayHost  1
+    com.apple.iokit.IOUSBHostFamily 1.2
+    com.apple.driver.usb.AppleUSBCommon 1.0
+    com.apple.driver.AppleBusPowerController  1.0
+    com.apple.driver.AppleSEPManager  1.0.1
+    com.apple.driver.IOSlaveProcessor 1
+    com.apple.iokit.IOReportFamily  47
+    com.apple.iokit.IOTimeSyncFamily  740.2
+    com.apple.iokit.IONetworkingFamily  3.4
+    com.apple.driver.AppleACPIPlatform  6.1
+    com.apple.driver.AppleSMC 3.1.9
+    com.apple.iokit.IOPCIFamily 2.9
+    com.apple.iokit.IOACPIFamily  1.4
+    com.apple.kec.pthread 1
+    com.apple.kec.Libm  1
+    com.apple.kec.corecrypto  1.0
+
+    EOF
+    Model: MacBookPro11,4, BootROM MBP114.0182.B00, 4 processors, Intel Core i7, 2.2 GHz, 16 GB, SMC 2.29f24
+    Graphics: kHW_IntelIrisProItem, Intel Iris Pro, spdisplays_builtin
+    Memory Module: BANK 0/DIMM0, 8 GB, DDR3, 1600 MHz, 0x802C, 0x31364B544631473634485A2D314736453120
+    Memory Module: BANK 1/DIMM0, 8 GB, DDR3, 1600 MHz, 0x802C, 0x31364B544631473634485A2D314736453120
+    AirPort: spairport_wireless_card_type_airport_extreme (0x14E4, 0x152), Broadcom BCM43xx 1.0 (7.77.61.2 AirPortDriverBrcmNIC-1305.8)
+    Bluetooth: Version 6.0.14d3, 3 services, 18 devices, 1 incoming serial ports
+    Network Service: Wi-Fi, AirPort, en0
+    USB Device: USB 3.0 Bus
+    USB Device: Internal Memory Card Reader
+    USB Device: Apple Internal Keyboard / Trackpad
+    USB Device: Bluetooth USB Host Controller
+    Thunderbolt Bus: MacBook Pro, Apple Inc., 27.1
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I wonder if anyone else has experienced similar issues? I’m guessing that Apple don’t exactly encourage aftermarket products on the Mackbook (accessories, cables and upgrades being one of their major revenue streams). If you’ve had any similar issues, hit me up on twitter and share your experience.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 09 Jul 2019 09:19:12 +0100</pubDate>
+        <link>https://mergefailure.com/jekyll/update/2019/07/09/owc-aura-prox.html</link>
+        <guid isPermaLink="true">https://mergefailure.com/jekyll/update/2019/07/09/owc-aura-prox.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,44 @@
+- avatar: images/founders/profile-pic-250x250.png
+  name: Mr White
+  position: Founder
+  socials:
+    - link: http://twitter.com
+      icon: twitter
+    - link: http://facebook.com
+      icon: facebook
+  desc:
+    Mr White always dresses well and is decisive in stressful situations.
+- avatar: images/founders/profile-pic-250x250.png
+  name: Mr Brown
+  position: Creative Director
+  socials:
+    - link: http://twitter.com
+      icon: twitter
+    - link: http://facebook.com
+      icon: facebook
+    - link: http://dribbble.com
+      icon: dribbble
+  desc:
+    Mr Brown operates on the sidelines but is a true team player.
+- avatar: images/founders/profile-pic-250x250.png
+  name: Mr Pink
+  position: Designer
+  socials:
+    - link: http://twitter.com
+      icon: twitter
+    - link: http://facebook.com
+      icon: facebook
+    - link: http://tumblr.com
+      icon: tumblr
+  desc:
+    Mr Pink is an insightful man with flexible morals.
+- avatar: images/founders/profile-pic-250x250.png
+  name: Mr Yellow
+  position: Developer
+  socials:
+    - link: http://twitter.com
+      icon: twitter
+    - link: http://facebook.com
+      icon: facebook
+  desc:
+    Mr Yellow is mainly involved in not very much really

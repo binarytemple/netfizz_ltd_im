@@ -9,30 +9,32 @@ gist:
   noscript: true
 
 # Site settings
-title: netfizz ltd
+title: mergefailure
 description: > # this means to ignore newlines until "baseurl:"
-   netfizz ltd - IM based software consultancy
-baseurl: #the subpath of your site, e.g. /blog/
-
-twitter_username: netfizz_co_uk
-github_username:  netfizz_co_uk 
-medium_username:  netfizz_co_uk 
-orgname: netfizz_co_uk
+  Mergefailure for kubernetes, elixir, aws and google cloud
+# baseurl: # the subpath of your site, e.g. /blog/
+twitter_username: binarytemple
+github_username: binarytemple
+# medium_username:  mergefailure
+orgname: netfizz
 
 contact:
-  location: "Isle of Man"
-  # phone: "0000.."
-  # email: sales@netfizz_co_uk.com
+  location: "Douglas, Isle of Man"
+  phone: "on request"
+  email: sales@netfizz.im
 
 # Commenting
-comments:
-  provider: disqus
+# comments:
+#  provider: disqus
+
+layout: default
+comments: true
 
 ## Disqus
 disqus:
-  shortname: mergefailure-com
+  shortname: netfizz-im
 
-# Pagination 
+# Pagination
 paginate: 3
 paginate_path: "blog/page:num"
 
@@ -45,8 +47,8 @@ markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
-  
-permalink   : date
+
+permalink: date
 
 exclude:
   - /.github
@@ -74,5 +76,5 @@ exclude:
   - package.json
 
 sass:
-    style: compressed
-    sass_dir: _sass
+  style: compressed
+  sass_dir: _sass
