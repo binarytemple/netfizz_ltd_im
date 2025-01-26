@@ -6,7 +6,8 @@ layout: default
 <div class='full parallax' style='background-image: url({{site.url}}/images/@stock/blog-header-bg.jpg); color: #fff;'>
   <div class='row'>
     <div class='large-12 columns'>
-      {% include section-header.html title="Our blog" tagline="Know what we are thinking and doing" color="#fff" class="big" %}
+      {% include section-header.html title="Our blog" tagline="Know what we are thinking and doing" color="#fff"
+      class="big" %}
     </div>
   </div>
   <div class='four spacing'></div>
@@ -20,26 +21,26 @@ layout: default
       {{content}}
 
       {% if paginator %}
-        <div class="pager">
-          {% if paginator.next_page %}
-            {% if paginator.next_page == 1 %}
-              <a href="/blog" class="older">Older Entries</a>
-            {% else %}
-              <a href="/blog/page{{ paginator.next_page }}" class="older">Older Entries</a>
-            {% endif %}
-          {% else %}
-            <span class="older">Older Entries</span>
-          {% endif %}
-          {% if paginator.previous_page %}
-            {% if paginator.previous_page == 1 %}
-              <a href="/blog" class="newer">Newer Entries</a>
-            {% else %}
-              <a href="/blog/page{{ paginator.previous_page }}" class="newer">Newer Entries</a>
-            {% endif %}
-          {% else %}
-            <span class="newer">Newer Entries</span>
-          {% endif %}
-        </div>
+      <div class="pager">
+        {% if paginator.next_page %}
+        {% if paginator.next_page == 1 %}
+        <a href="/blog" class="older">Older Entries</a>
+        {% else %}
+        <a href="/blog/page{{ paginator.next_page }}" class="older">Older Entries</a>
+        {% endif %}
+        {% else %}
+        <span class="older">Older Entries</span>
+        {% endif %}
+        {% if paginator.previous_page %}
+        {% if paginator.previous_page == 1 %}
+        <a href="/blog" class="newer">Newer Entries</a>
+        {% else %}
+        <a href="/blog/page{{ paginator.previous_page }}" class="newer">Newer Entries</a>
+        {% endif %}
+        {% else %}
+        <span class="newer">Newer Entries</span>
+        {% endif %}
+      </div>
       {% endif %}
 
 
