@@ -9,7 +9,7 @@ section_id: blog
     <div class='mod modBlogPost big'>
       <div class='images'>
         {% for image in page.images %}
-          <div class='image'><img alt="" src="{{site.url}}/{{image}}" /></div>
+        <div class='image'><img alt="" src="{{site.url}}/{{image}}" /></div>
         {% endfor %}
       </div>
       <div class='content'>
@@ -21,7 +21,7 @@ section_id: blog
           </span>
           /
           <span>
-            <a href="{{page.url}}#disqus_thread">n comments</a>
+            <a href="{{page.url}}#disqus_thread">comments</a>
           </span>
         </p>
         <h3><a href="{{page.url}}">{{page.title}}</a></h3>
@@ -32,12 +32,12 @@ section_id: blog
     <div class='two spacing'></div>
     <a id='comments'></a>
     <div class='comments-wrapper'>
-      <!-- start disqus--> 
+      <!-- start disqus-->
       {% if site.disqus.shortname %}
-        {% include disqus_comments.html %}
+      {% include disqus_comments.html %}
       {% endif %}
-      <!-- end disqus --> 
-      </div>
+      <!-- end disqus -->
+    </div>
     <div class='four spacing'></div>
   </div>
 </div>
