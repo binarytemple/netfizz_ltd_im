@@ -1,11 +1,11 @@
 ---
-layout: post
 title: Code Beam San Francisco countdown
-date: 2019-10-24T17:00:00.000+00:00
+date: 2019-10-24 17:00:00 Z
 categories:
 - erlang conferences
-
+layout: post
 ---
+
 The conference is happening on Thu, 5 Mar 2020 – Fri, 6 Mar 2020.
 
 _Countdown to code beam SF_ :

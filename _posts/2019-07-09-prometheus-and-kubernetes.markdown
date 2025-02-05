@@ -1,12 +1,15 @@
 ---
+title: Exposing Elixir application metrics using Prometheus
+date: 2019-07-09 08:19:12 Z
+categories:
+- prometheus
+- kubernetes
+- elxir
 layout: post
-title:  "Exposing Elixir application metrics using Prometheus"
-date:   2019-07-09 08:19:12
-categories: prometheus kubernetes elxir
 comments: true
 images:
-  - images/@stock/blog-3.jpg
-  - images/@stock/blog-2.jpg
+- images/@stock/blog-3.jpg
+- images/@stock/blog-2.jpg
 ---
 
 ## Overview

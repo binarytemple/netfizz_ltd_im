@@ -1,8 +1,10 @@
 ---
+title: OWC Aura Pro X aftermarket SSD on Macbook
+date: 2019-07-09 08:19:12 Z
+categories:
+- jekyll
+- update
 layout: post
-title:  "OWC Aura Pro X aftermarket SSD on Macbook"
-date:   2019-07-09 08:19:12
-categories: jekyll update
 ---
 
 I got an OWC Aura Pro X in order to upgrade my Macbook drive from it's somewhat measly 256GB drive to 1TB as I needed to build a lot of Docker images.

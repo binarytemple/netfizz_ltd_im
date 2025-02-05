@@ -1,14 +1,19 @@
 ---
-layout: post
 title: CLI metrics with the zsh shell
-date: 2019-07-09T08:19:12.000+00:00
-categories: zsh grafana time metrics prometheus
+date: 2019-07-09 08:19:12 Z
+categories:
+- zsh
+- grafana
+- time
+- metrics
+- prometheus
+layout: post
 comments: true
 images:
 - images/@stock/blog-3.jpg
 - images/@stock/blog-2.jpg
-
 ---
+
 I've got a problem - I spend too many hours of the day in front of a computer. I need to better regulate my time.
 
 Lets find a UNIX command line tools way to keep a record of my hours...

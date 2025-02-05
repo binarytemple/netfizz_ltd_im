@@ -1,14 +1,14 @@
 ---
-layout: post
+title: Setting up a professional Erlang and Elixir development environment on the
+  Mac
+date: 2020-08-09 09:37:00 Z
 categories:
 - elixir
 - erlang
 - setup
-date: 09/08/2020 9:37 AM +0000
-title: Setting up a professional Erlang and Elixir development environment on the
-  Mac
-
+layout: post
 ---
+
 ## Here are our objectives 
 
 1. Install [homebrew](https://brew.sh/)

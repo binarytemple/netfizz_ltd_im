@@ -2,127 +2,121 @@
 layout: default
 section_id: home
 slides:
-  - bg: images/@stock/whitewater-and-rocks-2320x1600.jpg
-    small_title:
-      klass: bottom-to-top
-      text: Helping you navigate
-    title:
-      klass: bottom-to-top
-      text: Uncharted waters
-    buttons:
-      klass: bottom-to-top
-      items:
-        - text: Learn More
-          link_to: http://github.com/mergefailure
-  - bg: images/@stock/hands-on-keyboard.jpg
-    klass: centered-text
-    small_title:
-      klass: bottom-to-top
-      text: We make websites that are
-    title:
-      klass: bottom-to-top
-      text: Creative &amp; Powerful
-    buttons:
-      klass: bottom-to-top
-      items:
-        - klass: boxed
-          text: View Features
-          link_to: http://github.com/mergefailure
-        - text: Purchase Now
-          link_to: http://github.com/mergefailure
-
-  - bg: images/@stock/slide-5.jpg
-    small_title:
-      klass: bottom-to-top
-      text: This is a creative theme that you'll
-    title:
-      klass: bottom-to-top
-      text: definitely love...
-    buttons:
-      klass: bottom-to-top
-      items:
-        - text: Learn More
-          link_to: http://github.com/mergefailure
-
-
-
+- bg: images/@stock/whitewater-and-rocks-2320x1600.jpg
+  small_title:
+    klass: bottom-to-top
+    text: Helping you navigate
+  title:
+    klass: bottom-to-top
+    text: Uncharted waters
+  buttons:
+    klass: bottom-to-top
+    items:
+    - text: Learn More
+      link_to: http://github.com/mergefailure
+- bg: images/@stock/hands-on-keyboard.jpg
+  klass: centered-text
+  small_title:
+    klass: bottom-to-top
+    text: We make websites that are
+  title:
+    klass: bottom-to-top
+    text: Creative &amp; Powerful
+  buttons:
+    klass: bottom-to-top
+    items:
+    - klass: boxed
+      text: View Features
+      link_to: http://github.com/mergefailure
+    - text: Purchase Now
+      link_to: http://github.com/mergefailure
+- bg: images/@stock/slide-5.jpg
+  small_title:
+    klass: bottom-to-top
+    text: This is a creative theme that you'll
+  title:
+    klass: bottom-to-top
+    text: definitely love...
+  buttons:
+    klass: bottom-to-top
+    items:
+    - text: Learn More
+      link_to: http://github.com/mergefailure
 works:
-  - image: images/@stock/work-1.jpg
-    title: Beautiful Girl
-    link_to: portfolio-item.html
-    klass: graphi-design
-    desc: Design &amp; Development
-  - image: images/@stock/work-2.jpg
-    title: Beautiful Girl
-    link_to: portfolio-item.html
-    klass: graphi-design
-    desc: Design &amp; Development
-  - image: images/@stock/work-3.jpg
-    title: Beautiful Girl
-    link_to: portfolio-item.html
-    klass: graphi-design
-    desc: Design &amp; Development
-  - image: images/@stock/work-4.jpg
-    title: Beautiful Girl
-    link_to: portfolio-item.html
-    klass: graphi-design
-    desc: Design &amp; Development
-  - image: images/@stock/work-5.jpg
-    title: Beautiful Girl
-    link_to: portfolio-item.html
-    klass: graphi-design
-    desc: Design &amp; Development
-  - image: images/@stock/work-6.jpg
-    title: Beautiful Girl
-    link_to: portfolio-item.html
-    klass: graphi-design
-    desc: Design &amp; Development
-  - image: images/@stock/work-7.jpg
-    title: Beautiful Girl
-    link_to: portfolio-item.html
-    klass: graphi-design
-    desc: Design &amp; Development
-  - image: images/@stock/work-8.jpg
-    title: Beautiful Girl
-    link_to: portfolio-item.html
-    klass: graphi-design
-    desc: Design &amp; Development
-
-
+- image: images/@stock/work-1.jpg
+  title: Beautiful Girl
+  link_to: portfolio-item.html
+  klass: graphi-design
+  desc: Design &amp; Development
+- image: images/@stock/work-2.jpg
+  title: Beautiful Girl
+  link_to: portfolio-item.html
+  klass: graphi-design
+  desc: Design &amp; Development
+- image: images/@stock/work-3.jpg
+  title: Beautiful Girl
+  link_to: portfolio-item.html
+  klass: graphi-design
+  desc: Design &amp; Development
+- image: images/@stock/work-4.jpg
+  title: Beautiful Girl
+  link_to: portfolio-item.html
+  klass: graphi-design
+  desc: Design &amp; Development
+- image: images/@stock/work-5.jpg
+  title: Beautiful Girl
+  link_to: portfolio-item.html
+  klass: graphi-design
+  desc: Design &amp; Development
+- image: images/@stock/work-6.jpg
+  title: Beautiful Girl
+  link_to: portfolio-item.html
+  klass: graphi-design
+  desc: Design &amp; Development
+- image: images/@stock/work-7.jpg
+  title: Beautiful Girl
+  link_to: portfolio-item.html
+  klass: graphi-design
+  desc: Design &amp; Development
+- image: images/@stock/work-8.jpg
+  title: Beautiful Girl
+  link_to: portfolio-item.html
+  klass: graphi-design
+  desc: Design &amp; Development
 services:
-  - icon: trophy
-    title: Web Design
-    desc: As you can see from this beautiful website - we have quite a lot of competence in this area (bought template for $40)
-  - icon: cogs
-    title: Web Development
-    desc: Now, if you mean massive distributed systems, some of whom have a web frontend - then yes - we do web development.
-  - icon: glass-martini
-    title: Branding
-    desc: A new area for us - this website is an experiment in branding.
-  - icon: lock
-    title: Security
-    desc: Security is something we care about, probably more than most of the industry, you can expect us to act in your best interests.
-
+- icon: trophy
+  title: Web Design
+  desc: As you can see from this beautiful website - we have quite a lot of competence
+    in this area (bought template for $40)
+- icon: cogs
+  title: Web Development
+  desc: Now, if you mean massive distributed systems, some of whom have a web frontend
+    - then yes - we do web development.
+- icon: glass-martini
+  title: Branding
+  desc: A new area for us - this website is an experiment in branding.
+- icon: lock
+  title: Security
+  desc: Security is something we care about, probably more than most of the industry,
+    you can expect us to act in your best interests.
 milestones:
-  - icon: folder-open
-    from: 0
-    to: 69
-    title: Projects Completed
-  - icon: coffee
-    from: 0
-    to: 726
-    title: Cups of coffee offered
-  - icon: thumbs-up
-    from: 0
-    to: 59
-    title: Happy coders
-  - icon: file-alt
-    from: 0
-    to: 21
-    title: Articles Published
-
+- icon: folder-open
+  from: 0
+  to: 69
+  title: Projects Completed
+- icon: coffee
+  from: 0
+  to: 726
+  title: Cups of coffee offered
+- icon: thumbs-up
+  from: 0
+  to: 59
+  title: Happy coders
+- icon: file-alt
+  from: 0
+  to: 21
+  title: Articles Published
 ---
-
 
 <div class='mod modDefaultSlider'>
   <div class='sequence' data-autostop='on' data-timeout='0'>

@@ -1,15 +1,15 @@
 ---
-layout: post
+title: Caching on machine executor/limitations of docker (remote/secondary container)
+  options
+date: 2021-07-01 11:36:00 Z
 categories:
 - circleci
 - caching
 - docker
 - executors
-date: 01/07/2021 11:36 AM +0000
-title: Caching on machine executor/limitations of docker (remote/secondary container)
-  options
-
+layout: post
 ---
+
 We switched from docker executors to machine executor because 
 
 1\. Docker local you couldn't provide any arguments to the container - container was 3rd party and we needed to pass a flag to indicate whether it should run single or multi node

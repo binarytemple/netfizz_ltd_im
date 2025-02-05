@@ -1,80 +1,65 @@
-url: "https://netfizz.im" # the base hostname & protocol for your site
-
+---
+title: mergefailure
+timezone: UTC
+collections:
+  posts:
+    title: Posts
+    output: true
+  uploads:
+    title: Uploads
+    output: true
+url: https://netfizz.im
 plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-
+- jekyll-paginate
+- jekyll-sitemap
+- jekyll-gist
 gist:
   noscript: true
+description: 'Mergefailure for kubernetes, elixir, aws and google cloud
 
-# Site settings
-title: mergefailure
-description: > # this means to ignore newlines until "baseurl:"
-  Mergefailure for kubernetes, elixir, aws and google cloud
-# baseurl: # the subpath of your site, e.g. /blog/
+'
 twitter_username: binarytemple
 github_username: binarytemple
-# medium_username:  mergefailure
 orgname: netfizz
-
 contact:
-  location: "Launchpad, Hillary House, Prospect Hill, Douglas, IM1 1EQ, Isle of Man"
-  phone: "on request"
+  location: Launchpad, Hillary House, Prospect Hill, Douglas, IM1 1EQ, Isle of Man
+  phone: on request
   email: sales@netfizz.im
-
-# Commenting
-# comments:
-#  provider: disqus
-
 layout: default
 comments: true
-
-## Disqus
 disqus:
   shortname: netfizz-im
-
-# Pagination
 paginate: 3
-paginate_path: "blog/page:num"
-
-## => Build
-##############################
-#markdown    : kramdown
-#highlighter : rouge
-
+paginate_path: blog/page:num
 markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
-
 permalink: date
-
 exclude:
-  - /.github
-  - /.git*
-  - .*.swp
-  - Dockerfile
-  - /docker
-  - /docs
-  - /node_modules
-  - /screenshots
-  - /svg
-  - /test
-  - /vendor
-  - CHANGELOG.md
-  - Gemfile
-  - Gemfile.lock
-  - HOW_TO_RELEASE.md
-  - LICENSE
-  - Makefile
-  - README-*.md
-  - README.md
-  - gulpfile.js
-  - jekyll-text-theme.gemspec
-  - package-lock.json
-  - package.json
-
+- "/.github"
+- "/.git*"
+- ".*.swp"
+- Dockerfile
+- "/docker"
+- "/docs"
+- "/node_modules"
+- "/screenshots"
+- "/svg"
+- "/test"
+- "/vendor"
+- CHANGELOG.md
+- Gemfile
+- Gemfile.lock
+- HOW_TO_RELEASE.md
+- LICENSE
+- Makefile
+- README-*.md
+- README.md
+- gulpfile.js
+- jekyll-text-theme.gemspec
+- package-lock.json
+- package.json
 sass:
   style: compressed
   sass_dir: _sass

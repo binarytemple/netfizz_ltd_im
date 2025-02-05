@@ -1,13 +1,13 @@
 ---
-layout: post
+title: Secure RSA key generation in Elixir
+date: 2020-11-05 10:37:00 Z
 categories:
 - elixir
 - rsa
 - security
-date: 05/11/2020 10:37 AM +0000
-title: Secure RSA key generation in Elixir
-
+layout: post
 ---
+
 ```elixir
 defmodule RsaGeneratorTest do
   use ExUnit.Case
