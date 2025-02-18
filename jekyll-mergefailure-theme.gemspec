@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name          = "jekyll-mergefailure-theme"
   spec.version       = "0.0.1"
   spec.authors       = ["bryan hunt"]
-  spec.email         = ["mergefailure@gmail.com"]
+  spec.email         = [""]
 
   spec.summary       = %q{possibly unused theme}
   spec.homepage      = "https://localhost"

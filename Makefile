@@ -3,10 +3,7 @@
 deps:
 	bundle install --path vendor/bundle
 
-bootstrap: deps
-	bundle add jekyll || true
-
-serve: bootstrap
+serve: deps
 	bundle exec jekyll serve
 
 github:
