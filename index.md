@@ -58,6 +58,8 @@ Netfizz LTD is officially registered in the Isle of Man. View our [company regis
 
 **Current Availability:** We are fully booked until June 2025 with an exclusive client engagement.
 
-**How to reach us:** Connect with [Bryan Hunt on LinkedIn](https://uk.linkedin.com/in/bryanhuntwithay) for inquiries or to discuss future opportunities.
+**How to reach us:** 
+- Connect with [Bryan Hunt on LinkedIn](https://uk.linkedin.com/in/bryanhuntwithay) for inquiries or to discuss future opportunities
+- Follow Bryan on [GitHub](https://github.com/binarytemple)
 
 **Office:** Registered at the address listed in the Isle of Man companies registry. We operate remotely and do not maintain a public trading address.
